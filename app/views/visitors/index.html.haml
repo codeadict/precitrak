@@ -1,0 +1,35 @@
+- if user_signed_in?
+  - if current_user.admin?
+    %h3 Admin
+    %p
+      = link_to 'User count:', users_path
+      = User.count
+  - else
+    %h3 You've signed up. Download a free book.
+    = link_to 'Download PDF', products_path('product.pdf'), class: 'btn btn-success btn-large'
+- else
+  #welcome.span7
+    %h1 Membership Site
+    %h3 Learn to build a successful subscription site.
+  .row.col-sm-12.plans
+    .col-sm-2.well
+      .plan
+        %h2 Silver
+      %ul.list-unstyled
+        %li One lesson a month
+      %h3 $9/month
+      = link_to 'Subscribe', new_user_registration_path(plan: 'silver'), :class => 'btn btn-primary'
+    .col-sm-2.well.featured
+      .plan.featured-plan
+        %h2 Gold
+      %ul.list-unstyled
+        %li Ten lessons a month
+      %h3 $19/month
+      = link_to 'Subscribe', new_user_registration_path(plan: 'gold'), :class => 'btn btn-primary'
+    .col-sm-2.well
+      .plan
+        %h2 Platinum
+      %ul.list-unstyled
+        %li Thirty lessons a month
+      %h3 $29/month
+      = link_to 'Subscribe', new_user_registration_path(plan: 'platinum'), :class => 'btn btn-primary'
