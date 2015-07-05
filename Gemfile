@@ -1,19 +1,21 @@
 source 'https://rubygems.org'
 ruby '2.2.2'
 gem 'rails', '4.2.3'
-gem 'therubyracer'
-gem 'sass-rails', '~> 5.0'
+gem 'therubyracer',  platforms: :ruby
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
+# Use SCSS for stylesheets
+gem 'sass-rails', '~> 5.0.3'
 gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
+gem 'twitter-bootstrap-rails', "~> 2.2.8"
 gem 'less-rails', '~> 2.7.0'
+gem 'less-rails-bootstrap'
 group :development, :test do
   gem 'byebug'
   gem 'web-console', '~> 2.0'
   gem 'spring'
 end
-gem 'bootstrap-sass'
 gem 'devise'
 gem 'gibbon'
 gem 'haml-rails'

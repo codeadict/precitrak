@@ -1,0 +1,25 @@
+%section.sign-in
+  .container
+    .module.mod-sign-in
+      .logo
+        = link_to root_path do
+          %img{alt: "Go Home", src: image_path("home-icon.png")}
+      = form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :role => 'form'}) do |f|
+        = devise_error_messages!
+        = f.email_field :email, :autofocus => true, id: 'inputEmail', placeholder: 'Email'
+        = f.password_field :password, id: 'inputPassword', placeholder: 'Password'
+        %label.checkbox
+          = f.check_box :remember_me
+          Remember me
+        - if devise_mapping.recoverable?
+          = link_to new_password_path(resource_name), class: 'btn btn-large', id: 'forgot-password' do
+            %i.icon-arrow-down
+            Forgot password?
+        = f.submit 'Sign in', class: 'btn btn-primary btn-large' do
+          %i.icon-lock
+          Sign in
+      %form#forgot-form.forgot-form
+        %input{:placeholder => "Email", :type => "email"}/
+        %button.btn.btn-primary.btn-large{:type => "submit"}
+          %i.icon-envelope
+          Send Password Reset

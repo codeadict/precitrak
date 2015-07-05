@@ -13,5 +13,5 @@
 //= require jquery
 //= require payola
 //= require jquery_ujs
-//= require bootstrap-sprockets
-//= require_tree .
+//= require twitter/bootstrap
+//= require jquery.placeholder.min
