@@ -12,76 +12,59 @@
               %li.active
                 %a{:href => "/"} Home
               %li
-                %a{:href => "tour.html"} Features
-              %li
-                %a{:href => "pricing.html"} Pricing
-              %li
-                = link_to 'Sign in', new_user_session_path, class: 'log-in'
+                %a{:href => "tour.html"} Schedule a Visit
+              - if user_signed_in?
+                %li= link_to 'Manage Pins', visitors_pricing_path
+                %li= link_to 'Go to Tracking', visitors_pricing_path
+                %li= link_to 'Edit account', edit_user_registration_path
+                - if current_user.try(:admin?)
+                  %li= link_to 'Users', users_path
+                %li= link_to 'Sign out', destroy_user_session_path, :method=>'delete'
+              - else
+                %li= link_to 'Plans & Pricing', visitors_pricing_path
+                %li= link_to 'Sign in', new_user_session_path
     / /.nav-collapse
     .container
       .row
         .span7
+
           %header
             %hgroup
-              %h1 Built to make collaboration easier.
+              %h1 Built to Protect your Investment.
               %h2
-                Whether designing, developing or copywriting,
-                %strong CollabOApp is designed with teams in mind
-                to make review, sharing and concepting easier than ever.
-            %a.btn.btn-large.btn-primary{:href => "pricing.html"} See Plans & Pricing
-            %a.btn.btn-large.btn-info{:href => "tour.html"} Tour the Product
+                With our real time tracking solutions,
+                %strong
+                  Precitrak is here to give you a peace of mind in regards to your Assets. Contact Us Today.
+            = link_to 'Plans & Pricing', visitors_pricing_path, class: 'btn btn-large btn-primary'
+            %a.btn.btn-large.btn-info{:href => "tour.html"} Products
         .span5
           %img{alt: "Intro", src: image_path("logo.png")}
   .container.features
     .row
-      .span4
+      .span3
         .feature
           %h3
             %i.icon-copy.icon-large
             Killer Version Control
           %p Kale chips sustainable mustache, organic viral pork belly mixtape. Bicycle rights kale chips trust fund. Scenester street art fixie lo-fi, occupy vice.
-      .span4
+      .span3
         .feature
           %h3
             %i.icon-cloud.icon-large
             Cloud Storage
           %p Farm-to-table narwhal gentrify, aesthetic ethical quinoa mustache wes anderson DIY bicycle rights chambray biodiesel wolf umami freegan.
-      .span4
+      .span3
         .feature
           %h3
             %i.icon-comments-alt.icon-large
             Live Team Chat
           %p Polaroid vinyl put a bird on it, pinterest cray jean shorts ethnic. Skateboard seitan art party, kogi biodiesel banh brunch pickled.
-    .row
-      .span4
+      .span3
         .feature
           %h3
             %i.icon-bolt.icon-large
             Real-time Updates
           %p Art party bespoke brunch, chillwave lomo chambray biodiesel wolf umami freegan, street art fixie lo-fi, occupy vice seitan you probably haven't heard.
-      .span4
-        .feature
-          %h3
-            %i.icon-bullhorn.icon-large
-            Actionable Feedback
-          %p Viral semiotics ennui vice marfa you probably haven't heard of them bicycle rights gluten-free single-origin coffee vegan wayfarers letterpress pour-over.
-      .span4
-        .feature
-          %h3
-            %i.icon-beaker.icon-large
-            Integrated Test Labs
-          %p Mlkshk odd future keffiyeh hoodie, street art seitan you probably haven't heard of them wayfarers. Post-ironic cardigan tofu wayfarers butcher.
-  %section.trust.trust-video
-    .container
-      .row
-        .span8
-          %iframe{:src => "http://player.vimeo.com/video/25798708?title=0&byline=0&portrait=0&badge=0&color=ffffff"}
-        .span4
-          .trust-explainer
-            %h2 CollabOApp is an awesome solution to team environments.
-            %p All setups come with unlimited version control, storage in the cloud, live chat, real-time updates, marked-up feedback forms and more.  Try our integrated test labs for some fun and measurable team collaboration experiments.
-            %a.btn.btn-large.btn-primary{:href => "pricing.html"} See Plans & Pricing
-            %a.btn.btn-large.btn-info{:href => "tour.html"} Take a Tour
 
 = content_for :footer do
   = render 'layouts/footer'

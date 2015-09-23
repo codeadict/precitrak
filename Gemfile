@@ -17,12 +17,15 @@ group :development, :test do
   gem 'spring'
 end
 gem 'devise'
-gem 'gibbon'
+#gem 'gibbon'
 gem 'haml-rails'
-gem 'mysql2'
+# Use mysql as the database for Active Record
+gem 'mysql2', '~> 0.3.20'
+
 gem 'payola-payments'
 gem 'sucker_punch'
-gem 'upmin-admin'
+gem 'activeadmin', github: 'activeadmin'
+gem 'event-calendar', :require => 'event_calendar'
 group :development do
   gem 'better_errors'
   gem 'capistrano', '~> 3.0.1'

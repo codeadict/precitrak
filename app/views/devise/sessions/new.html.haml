@@ -1,9 +1,11 @@
+= content_for :body_class do
+  sign-in-page
 %section.sign-in
   .container
     .module.mod-sign-in
       .logo
         = link_to root_path do
-          %img{alt: "Go Home", src: image_path("home-icon.png")}
+          %img{alt: "Go Home", src: image_path("small-logo.png")}
       = form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :role => 'form'}) do |f|
         = devise_error_messages!
         = f.email_field :email, :autofocus => true, id: 'inputEmail', placeholder: 'Email'

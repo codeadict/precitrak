@@ -1,0 +1,80 @@
+= content_for :body_class do
+  pricing-page
+%div{:role => "main"}
+  .container
+    .navbar
+      .navbar-inner
+        .container
+          %a.btn.btn-navbar{"data-target" => ".nav-collapse", "data-toggle" => "collapse"}
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+          .nav-collapse.collapse
+            = link_to root_path do
+              %img{alt: "PreciTrack", src: image_path("small-logo.png")}
+            %ul.nav.pull-right
+              %li
+                = link_to 'Home', root_path
+              %li
+                %a{:href => "tour.html"} Tour
+              %li.active
+                = link_to 'Plans & Pricing', visitors_pricing_path
+              %li
+                = link_to 'Sign in', new_user_session_path
+
+  %section.pricing-table
+    .container
+      .row
+        .span12
+          %header
+            %h1 Choose the plan that best fit your needs.
+      .row
+        .span4
+          .module.mod-pricing
+            %header
+              %h2 Silver
+              %span.fee $10/month
+            .mod-body
+              %ul.feature-list
+                %li
+                  %strong Unlimited
+                  Storage
+                %li
+                  %strong 5
+                  Team Members
+                %li
+                  %strong 10
+                  Revisions
+                %li
+                  %strong Unlimited
+                  Chat
+              = link_to 'Subscribe', new_user_registration_path(plan: 'silver'), :class => 'btn btn-info btn-large btn-block'
+        .span4
+          .module.mod-pricing
+            %header
+              %h2 Platinum
+              %span.fee $50/month
+            .mod-body
+              %ul.feature-list
+                %li
+                  %strong Unlimited
+                  Storage
+                %li
+                  %strong 25
+                  Team Members
+                %li
+                  %strong 75
+                  Revisions
+                %li
+                  %strong Unlimited
+                  Chat
+              = link_to 'Subscribe', new_user_registration_path(plan: 'platinum'), :class => 'btn btn-primary btn-large btn-block'
+        .span4
+          .module.mod-pricing
+            %header
+              %h2 Enterprise
+              %span.fee Call Us.
+            .mod-body
+              %p You are a company with huge ammount of vehicles?  We can also help you, let's discuss about a customized plan for your needs.
+              %a.btn.btn-info.btn-large.btn-block.btn-email{:href => "mailto:"} Contact Us
+              

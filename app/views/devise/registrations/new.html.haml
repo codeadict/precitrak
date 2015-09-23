@@ -1,38 +1,84 @@
-- content_for :head do
-  = render 'payola/transactions/stripe_header'
-.authform
-  = form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :role => 'form', |
-    :class => 'payola-onestep-subscription-form',                                                                  |
-    'data-payola-base-path' => payola_path,                                                                        |
-    'data-payola-plan-type' => resource.plan.plan_class,                                                           |
-    'data-payola-plan-id' => resource.plan.id}) do |f|                                                             |
-    %h3 Sign up
-    %div
-      %br/
-      %span#error_explanation.payola-payment-error
-      %br/
-      %br/
-    .form-group
-      = f.label 'Subscription plan'
-      = f.collection_select(:plan_id, Plan.all, :id, :name)
-    .form-group
-      = f.label :email
-      = f.email_field :email, :autofocus => true, class: 'form-control', data: { payola: 'email' }
-    .form-group
-      = f.label :password
-      = f.password_field :password, class: 'form-control'
-    .form-group
-      = f.label :password_confirmation
-      = f.password_field :password_confirmation, class: 'form-control'
-    .form-group
-      = label_tag :card_number, "Credit Card Number"
-      = text_field_tag :card_number, nil, name: nil, class: 'form-control', data: { stripe: 'number' }
-    .form-group
-      = label_tag :card_code, "Card Security Code"
-      = text_field_tag :card_code, nil, name: nil, class: 'form-control', data: { stripe: 'cvc' }
-    %br/
-    .form-group
-      = label_tag :card_month, "Card Expiry"
-      = select_month nil, { use_two_digit_numbers: true}, { name: nil, data: { stripe: 'exp-month' } }
-      = select_year nil, {start_year: Date.today.year, end_year: Date.today.year+10}, { name: nil, data: { stripe: 'exp-year' } }
-    = f.submit 'Sign up', :class => 'button right'
+= content_for :body_class do
+  create-account
+%div{:role => "main"}
+  .container
+    .navbar
+      .navbar-inner
+        .container
+          %a.btn.btn-navbar{"data-target" => ".nav-collapse", "data-toggle" => "collapse"}
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+          .nav-collapse.collapse
+            = link_to root_path do
+              %img{alt: "PreciTrack", src: image_path("small-logo.png")}
+            %ul.nav.pull-right
+              %li
+                = link_to 'Home', root_path
+              %li
+                %a{:href => "tour.html"} Tour
+              %li.active
+                = link_to 'Plans & Pricing', visitors_pricing_path
+              %li
+                = link_to 'Sign in', new_user_session_path
+  / /.nav-collapse
+  / Navbar
+  %section
+    .container
+      .row
+        .span12
+          %header
+            %h1
+              #{@plan.name}
+              %small.pull-right $#{@plan.amount}/month
+      - content_for :head do
+        = render 'payola/transactions/stripe_header'
+      .authform
+        = form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :role => 'form', |
+          :class => 'payola-onestep-subscription-form create-account-form',                                                                  |
+          'data-payola-base-path' => payola_path,                                                                        |
+          'data-payola-plan-type' => resource.plan.plan_class,                                                           |
+          'data-payola-plan-id' => resource.plan.id}) do |f|
+
+          %div
+          %br/
+          %span#error_explanation.payola-payment-error
+          %br/
+          %br/
+          .row
+            %section.create-account-body
+              .span6
+                .create-account-desc
+                  %h3 Important Information
+                  %p Your account will be setup and activated by an administrator in next few hours since you sign up.
+                  %p Please be patient, we will send you an email to notify when your account is ready.
+              .span6
+                .create-account-fields
+                  .form-group
+                    = f.label 'Subscription plan'
+                    = f.collection_select(:plan_id, Plan.all, :id, :name)
+                  .form-group
+                    = f.label :email
+                    = f.email_field :email, :autofocus => true, class: 'form-control', data: { payola: 'email' }
+                  .form-group
+                    = f.label :password
+                    = f.password_field :password, class: 'form-control'
+                  .form-group
+                    = f.label :password_confirmation
+                    = f.password_field :password_confirmation, class: 'form-control'
+                  .form-group
+                    = label_tag :card_number, "Credit Card Number"
+                    = text_field_tag :card_number, nil, name: nil, class: 'form-control', data: { stripe: 'number' }
+                  .form-group
+                    = label_tag :card_code, "Card Security Code"
+                    = text_field_tag :card_code, nil, name: nil, class: 'form-control', data: { stripe: 'cvc' }
+                  %br/
+                  .form-group
+                    = label_tag :card_month, "Card Expiry"
+                    = select_month nil, { use_two_digit_numbers: true}, { name: nil, data: { stripe: 'exp-month' } }
+                    = select_year nil, {start_year: Date.today.year, end_year: Date.today.year+10}, { name: nil, data: { stripe: 'exp-year' } }
+
+                  = f.submit 'Create Account Now', class: 'btn btn-primary btn-large btn-block', id: 'create-account-button', name: 'submit'
+
+= content_for :footer do
+  = render 'layouts/footer'

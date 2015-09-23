@@ -1,0 +1,6 @@
+class CreateScheduleVisitTables < ActiveRecord::Migration
+  def change
+    create_table :schedule_visit_tables do |t|
+    end
+  end
+end

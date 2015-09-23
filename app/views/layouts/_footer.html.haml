@@ -1,40 +1,17 @@
 %footer
-  .container
-    .row
-      .span4
-        .footer-col-1
-          %h3 Newsletter Registration
-          %form.form-newsletter
-            .input-append
-              %input.span3.newsletter-input{:placeholder => "Email Address", :type => "text"}/
-              %button.btn{:type => "submit"} Sign Up
-      .span4
-        .footer-col-2
-          %address
-            %i.icon-map-marker
-            %strong Your Company
-            = succeed "710" do
-              %br/
-            = succeed "Suite" do
-              %br/
-            = succeed "St." do
-              %br/
-      .span4
-        .footer-col-3
-          %ul.social
+  .colophon
+    .container
+      .row
+        .span8
+          %p
+          %p.pull-left &copy; 2015 PreciTrak, LLC. All Rights Reserved
+        .span4
+          %ul.social.pull-right
             %li.facebook
               %a{:href => ""} Facebook
             %li.twitter
               %a{:href => ""} Twitter
             %li.linkedin
               %a{:href => ""} LinkedIn
-            %li.youtube
-              %a{:href => ""} YouTube
-  .colophon
-    .container
-      .row
-        %p.pull-left &copy; 2015 PreciTrak, LLC. All Rights Reserved
-        %p.pull-right
-  / javascript
   = javascript_include_tag 'application'
   = yield :javascript_footer
